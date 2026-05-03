@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Search, SlidersHorizontal, X, Pill } from 'lucide-react';
+import { localProducts } from '@/data/products';
 
 const categoryLabels: Record<string, string> = {
   tablets: 'Tablets', capsules: 'Capsules', syrups: 'Syrups',
@@ -27,8 +28,8 @@ export default function ProductsPage() {
   const { data: products, isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
-      const { data } = await supabase.from('products').select('*').eq('active', true);
-      return data || [];
+      // Use local products list
+      return localProducts;
     },
   });
 

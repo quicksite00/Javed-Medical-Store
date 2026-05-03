@@ -14,6 +14,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useNavigate } from 'react-router-dom';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { ParticleNetwork } from '@/components/ParticleNetwork';
+import { localProducts } from '@/data/products';
 
 const categories = [
   { name: 'Tablets', slug: 'tablets', icon: Pill, color: 'bg-blue-500/10 text-blue-600 dark:text-blue-400' },
@@ -39,8 +40,8 @@ const Index = () => {
   const { data: products } = useQuery({
     queryKey: ['featured-products'],
     queryFn: async () => {
-      const { data } = await supabase.from('products').select('*').eq('active', true).limit(8);
-      return data || [];
+      // Use local products for the featured section to ensure images from /assets are used
+      return localProducts.slice(0, 8);
     },
   });
 

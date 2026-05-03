@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
+import { localProducts } from '@/data/products';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { ProductCard } from '@/components/ProductCard';
@@ -19,6 +20,10 @@ export default function ProductDetail() {
   const { data: product, isLoading } = useQuery({
     queryKey: ['product', id],
     queryFn: async () => {
+      // Find product in local list
+      const localProduct = localProducts.find(p => p.id === id);
+      if (localProduct) return { ...localProduct, stock: 10, description: `High quality ${localProduct.name} available at Javed Medical Store. Guaranteed 100% authentic.` };
+      
       const { data } = await supabase.from('products').select('*').eq('id', id!).single();
       return data;
     },
@@ -28,6 +33,10 @@ export default function ProductDetail() {
     queryKey: ['related', product?.category],
     enabled: !!product,
     queryFn: async () => {
+      // Get related products from local list
+      const filtered = localProducts.filter(p => p.category === product!.category && p.id !== product!.id);
+      if (filtered.length > 0) return filtered.slice(0, 4);
+
       const { data } = await supabase.from('products').select('*').eq('category', product!.category).neq('id', product!.id).eq('active', true).limit(4);
       return data || [];
     },
