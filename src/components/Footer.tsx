@@ -103,7 +103,6 @@ export function Footer() {
             <p className="text-sm opacity-40 text-center">&copy; {new Date().getFullYear()} Javed Medical Store. All rights reserved.</p>
           </div>
         </div>
-      </div>
-    </footer>
+      </footer>
   );
 }
