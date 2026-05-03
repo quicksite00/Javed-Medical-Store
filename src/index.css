@@ -1,0 +1,359 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 220 30% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 30% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 30% 10%;
+
+    --primary: 230 75% 57%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 20% 93%;
+    --secondary-foreground: 220 30% 10%;
+
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 10% 46%;
+
+    --accent: 230 40% 94%;
+    --accent-foreground: 230 75% 48%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 60% 42%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --rx: 0 75% 55%;
+    --rx-foreground: 0 0% 100%;
+
+    --border: 220 15% 90%;
+    --input: 220 15% 90%;
+    --ring: 230 75% 57%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 230 75% 57%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 230 40% 94%;
+    --sidebar-accent-foreground: 230 75% 48%;
+    --sidebar-border: 220 15% 90%;
+    --sidebar-ring: 230 75% 57%;
+  }
+
+  .dark {
+    --background: 225 25% 8%;
+    --foreground: 220 15% 93%;
+
+    --card: 225 25% 12%;
+    --card-foreground: 220 15% 93%;
+
+    --popover: 225 25% 12%;
+    --popover-foreground: 220 15% 93%;
+
+    --primary: 230 75% 62%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 225 25% 16%;
+    --secondary-foreground: 220 15% 93%;
+
+    --muted: 225 25% 16%;
+    --muted-foreground: 220 10% 55%;
+
+    --accent: 225 25% 18%;
+    --accent-foreground: 230 75% 65%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 220 15% 93%;
+
+    --success: 152 60% 42%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --rx: 0 75% 55%;
+    --rx-foreground: 0 0% 100%;
+
+    --border: 225 25% 18%;
+    --input: 225 25% 18%;
+    --ring: 230 75% 62%;
+
+    --sidebar-background: 225 25% 8%;
+    --sidebar-foreground: 220 15% 93%;
+    --sidebar-primary: 230 75% 62%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 225 25% 18%;
+    --sidebar-accent-foreground: 230 75% 65%;
+    --sidebar-border: 225 25% 18%;
+    --sidebar-ring: 230 75% 62%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .glass {
+    @apply bg-background/85 backdrop-blur-xl border-b border-border/50 shadow-sm;
+  }
+
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(230, 75%, 57%), hsl(260, 70%, 60%));
+  }
+
+  .gradient-hero {
+    background: linear-gradient(135deg, hsl(230, 75%, 57%) 0%, hsl(260, 70%, 60%) 50%, hsl(290, 65%, 55%) 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(230, 75%, 57%), hsl(280, 80%, 60%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .brand-text-hover {
+    @apply transition-all duration-500 cursor-pointer;
+  }
+  .brand-text-hover:hover {
+    @apply text-primary scale-105;
+    filter: drop-shadow(0 0 20px hsl(var(--primary) / 0.4));
+  }
+
+  .interactive-title {
+    @apply transition-all duration-500 cursor-default;
+  }
+  .interactive-title:hover {
+    @apply text-primary translate-x-2;
+  }
+
+  .nav-link-animated {
+    @apply transition-all duration-300;
+  }
+  .nav-link-animated:hover {
+    color: hsl(230, 75%, 57%);
+  }
+
+  .nav-icon-hover {
+    @apply transition-all duration-300;
+  }
+  .nav-icon-hover:hover {
+    color: hsl(230, 75%, 57%);
+    transform: scale(1.1);
+  }
+
+  .animate-marquee {
+    animation: marquee-scroll 12s linear infinite;
+  }
+
+  .hover-lift {
+    @apply transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300;
+  }
+  .hover-glow:hover {
+    box-shadow: 0 8px 30px hsl(230 75% 57% / 0.15);
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+  }
+
+  .animate-spin-slow {
+    animation: spinSlow 20s linear infinite;
+  }
+
+  .animate-pulse-soft {
+    animation: pulseSoft 3s ease-in-out infinite;
+  }
+
+  .animate-bounce-gentle {
+    animation: bounceGentle 2s ease-in-out infinite;
+  }
+
+  .video-overlay {
+    @apply absolute inset-0;
+    background: linear-gradient(180deg, hsl(var(--background) / 0.85) 0%, hsl(var(--background) / 0.6) 50%, hsl(var(--background) / 0.9) 100%);
+  }
+
+  /* Scroll reveal animation */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .scroll-reveal-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .scroll-reveal-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .scroll-reveal-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .scroll-reveal-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .scroll-reveal-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .scroll-reveal-scale.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .stagger-1 { transition-delay: 0.1s; }
+  .stagger-2 { transition-delay: 0.2s; }
+  .stagger-3 { transition-delay: 0.3s; }
+  .stagger-4 { transition-delay: 0.4s; }
+  .stagger-5 { transition-delay: 0.5s; }
+  .stagger-6 { transition-delay: 0.6s; }
+
+  .card-3d {
+    @apply transition-all duration-500;
+  }
+  .card-3d:hover {
+    transform: translateY(-4px);
+  }
+
+  .medicine-3d {
+    animation: medicine3d 8s ease-in-out infinite;
+    transform-style: preserve-3d;
+  }
+
+  /* Interactive Hover Effects */
+  .interactive-hover {
+    @apply transition-all duration-300 cursor-pointer;
+  }
+  .interactive-hover:hover {
+    @apply text-primary scale-[1.02];
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulseSoft {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+@keyframes bounceGentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes medicine3d {
+  0%, 100% { transform: rotateY(0deg) rotateX(0deg); }
+  25% { transform: rotateY(10deg) rotateX(3deg); }
+  50% { transform: rotateY(0deg) rotateX(-3deg); }
+  75% { transform: rotateY(-10deg) rotateX(3deg); }
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes grid-move {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(40px); }
+}
+
+.bg-mesh {
+  @apply bg-background;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(6, 182, 212, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.15) 0px, transparent 50%);
+}
+
+.bg-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, currentColor 1px, transparent 1px),
+    linear-gradient(to bottom, currentColor 1px, transparent 1px);
+  @apply text-foreground/[0.05];
+  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+}
+
+.bg-grid-animated {
+  position: absolute;
+  inset: -40px 0 0 0;
+  width: 100%;
+  height: calc(100% + 40px);
+  animation: grid-move 15s linear infinite;
+}
+
+.text-shimmer {
+  background: linear-gradient(to right, #06b6d4 20%, #a855f7 40%, #a855f7 60%, #06b6d4 80%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
